@@ -1,0 +1,14 @@
+{
+  "router-endpoint": "tcp://localhost:5514",
+  "connect-timeout": 60,
+  "http-user-agent": "agent-unknown/1.0",
+  "http-connect-timeout": 60,
+  "logger-pattern": "%d %[(%z) %p%] - %m",
+  "output-template": "~/Downloads/{date.iso8610}/{title}.{container}",
+  "progressbar-eta-buffer": 32,
+  "progressbar-format": "| {bar} | {received}/{expected} ({eta}}",
+  "progressbar-fps": 12,
+  "progressbar-size": 32,
+  "progressbar-type": "shades_classic",
+  "spinner-type": "aesthetic"
+}
