@@ -1,0 +1,42 @@
+---
+# [Network]
+#
+# The address to the jomiel router endpoint to connect to. For example:
+#   - tcp://localhost:5514
+#   - ipc:///tmp/foo
+# router-endpoint: tcp://localhost:5514
+#
+# Max. time in seconds jinqr should allow connection to jomiel to take.
+# connect-timeout: 60
+#
+# Identify as UA to the HTTP servers.
+# http-user-agent: agent-unknown/1.0
+#
+# Time in seconds allowed for the connection to the HTTP server to take.
+# http-connect-timeout: 60
+
+# [Output]
+#
+# The logger pattern format to use. See <https://git.io/JGuV0>.
+# logger-pattern: "%d %[(%z) %p%] - %m"
+#
+# Specify the output filename template. See <https://git.io/JGuV9>.
+# output-template: "~/Downloads/{date.iso8610}/{title}.{container}"
+#
+# Number of updates used to calculate the ETA.
+# progress-eta-buffer: 32
+#
+# Customize the progressbar layout.
+# progressbar-format: "| {bar} | {received}/{expected} ({eta})"
+#
+# Maximum progress bar update rate.
+# progressbar-fps: 12
+#
+# Length of the progress bar in chars.
+# progressbar-size: 32
+#
+# Name of one of the provided progressbar types.
+# progressbar-type: "shades_classic"
+#
+# Name of one of the provided spinners. See --print-spinners.
+# spinner-type: "aesthetic"
