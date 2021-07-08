@@ -8,4 +8,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [v0.1.0] - 2021-07-08
+
 - First public release.
+
+[unreleased]: https://github.com/guendto/jinqr/compare/v0.1.0..HEAD
+[v0.1.0]: https://github.com/guendto/jinqr/releases/tag/v0.1.0
