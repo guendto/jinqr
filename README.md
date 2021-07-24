@@ -226,7 +226,7 @@ jinqr --progressbar-format "{bar} | {percentage} | {rate}/s" URI
 | `date.iso8601`     | download date in the ISO8601 format       |
 | `date.locale`      | download date based on the locale setting |
 
-##### Example
+#### Example
 
 ```shell
 jinqr -o ~/Downloads/{author.name}/{title}.{container} URI
