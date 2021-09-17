@@ -17,6 +17,7 @@
  */
 import prettyBytes from "pretty-bytes";
 
+/* eslint-disable import/extensions */
 import Options from "./options.js";
 import Jomiel from "./jomiel.js";
 import { httpSetupGlobalProxy, httpDownloadStream } from "./http.js";
