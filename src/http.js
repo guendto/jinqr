@@ -29,7 +29,7 @@ import prettyBytes from "pretty-bytes";
 import prettyMs from "pretty-ms";
 import protobuf from "protobufjs";
 import uaString from "ua-string";
-import transferRate from "simple-eta";
+import TransferRate from "simple-eta";
 
 import { getLogger } from "./log.js";
 
@@ -245,7 +245,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
           rate: 0,
         });
         // Start ETA.
-        data.eta = new transferRate({
+        data.eta = new TransferRate({
           min: 0,
           max: total,
           autostart: true,
