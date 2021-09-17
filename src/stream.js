@@ -43,7 +43,7 @@ export const selectStream = async (opts, response) => {
   // Select the stream based on the --stream value.
   if (opts.stream) {
     result = response.media.stream.filter(
-      stream => stream.quality.profile === opts.stream
+      (stream) => stream.quality.profile === opts.stream
     )[0];
   }
 
@@ -99,9 +99,9 @@ export const selectStream = async (opts, response) => {
             weekday: "long",
             year: "numeric",
             month: "long",
-            day: "numeric"
+            day: "numeric",
           }),
-          iso8601: now.toISOString().split("T")[0]
+          iso8601: now.toISOString().split("T")[0],
         };
       };
 
@@ -111,7 +111,7 @@ export const selectStream = async (opts, response) => {
         identifier: msg.identifier,
         author: msg.author,
         date: getDate(),
-        title: msg.title
+        title: msg.title,
       };
     };
 
@@ -139,7 +139,7 @@ export const selectStream = async (opts, response) => {
     selectedStream.saveTo = {
       fullPath: join(dirPath, fileName),
       fileName,
-      dirPath
+      dirPath,
     };
   };
 
