@@ -17,31 +17,34 @@
 import jomielMessages from "jomiel-messages";
 import slugify from "@sindresorhus/slugify";
 import humanizeUri from "humanize-url";
+import { Request } from "zeromq";
 import chalk from "chalk";
 import ora from "ora";
 
-import { Request } from "zeromq";
-
-const {
-  Inquiry,
-  Response,
-  StatusCode
-} = jomielMessages.jomiel.protobuf.v1beta1;
-
+/* eslint-disable import/extensions */
 import { getLogger } from "./log.js";
 import { printError } from "./printer.js";
+
+const { Inquiry, Response, StatusCode } =
+  jomielMessages.jomiel.protobuf.v1beta1;
+
+// "Update rules to support ES2022 class fields" (=> v8.0)
+// - <https://github.com/eslint/eslint/issues/14857>
 
 /**
  * The class used to communicate with `jomiel`.
  */
-export class Jomiel {
-  /** @private **/
+class Jomiel {
+  /** @private * */
   #spinner;
-  /** @private **/
+
+  /** @private * */
   #logger;
-  /** @private **/
+
+  /** @private * */
   #opts;
-  /** @private **/
+
+  /** @private * */
   #sck;
 
   /**
@@ -69,7 +72,7 @@ export class Jomiel {
     } catch (error) {
       this.#spinner?.stop();
       error.message = `<jomiel> ${error.message}`;
-      printError(error);
+      return printError(error);
     }
   }
 
@@ -123,7 +126,7 @@ export class Jomiel {
     this.#spinner = ora({
       text: "<jomiel> awaiting for a response...",
       isSilent: this.#opts.verbosityLevel === "off",
-      spinner: this.#opts.spinnerType
+      spinner: this.#opts.spinnerType,
     }).start();
 
     const [bytes] = await this.#sck.receive();
@@ -133,31 +136,33 @@ export class Jomiel {
     const msg = Response.decode(bytes);
     this.#logger.trace("receiveResponse: msg:", msg);
 
-    if (msg.status.code == StatusCode.STATUS_CODE_OK) {
-      return this.#slugifyProfiles(msg);
+    /**
+     * "Slugify" media the stream profiles for easier use with cli.
+     *
+     * @arg {object} response - the `jomiel` response
+     *
+     * @returns {object} the `jomiel` response message.
+     *
+     * @private
+     */
+    const slugifyProfiles = (response) => {
+      const result = [];
+      // See input.js for "airbnb-style note".
+      // eslint-disable-next-line no-restricted-syntax
+      for (const stream of response.media.stream) {
+        stream.quality.profile = slugify(stream.quality.profile);
+        result.push(stream);
+      }
+      response.media.stream = result;
+      return response;
+    };
+
+    if (msg.status.code === StatusCode.STATUS_CODE_OK) {
+      return slugifyProfiles(msg);
     }
     throw new Error(msg.status.message);
-  }
-
-  /**
-   * "Slugify" media the stream profiles for easier use with cli.
-   *
-   * @arg {object} response - the `jomiel` response
-   *
-   * @returns {object} the `jomiel` response message.
-   *
-   * @private
-   */
-  #slugifyProfiles(response) {
-    let result = [];
-    for (const stream of response.media.stream) {
-      stream.quality.profile = slugify(stream.quality.profile);
-      result.push(stream);
-    }
-    response.media.stream = result;
-    return response;
   }
 }
 
 // factory function for Jomiel.
-export default options => new Jomiel(options);
+export default (options) => new Jomiel(options);

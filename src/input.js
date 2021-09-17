@@ -56,13 +56,15 @@ import { URL } from "url";
  *
  * @func
  */
-export const processInput = async ({
+const processInput = async ({
   nargs = undefined,
   httpOnly = true,
   rebuildURI = true,
   returnAsObjects = false,
-  returnUniqueItems = true
+  returnUniqueItems = true,
 } = {}) => {
+  let result = [];
+
   /**
    * Process and validate the given value as a valid URI. Push the item
    * into the `result` array if it qualifies.
@@ -71,7 +73,7 @@ export const processInput = async ({
    *
    * @func addItem
    */
-  const addItem = value => {
+  const addItem = (value) => {
     if (!value || value.length === 0) {
       return;
     }
@@ -85,28 +87,41 @@ export const processInput = async ({
         }
       }
       if (rebuildURI) {
+        // eslint-disable-next-line no-param-reassign
         value = uri.toString();
       }
       if (returnAsObjects) {
+        // eslint-disable-next-line no-param-reassign
         value = uri;
       }
     } catch (error) {
       if (error.constructor === TypeError) {
-        error = new Error(`${error.message}: ${error.input}`);
+        throw new Error(`${error.message}: ${error.input}`);
       }
       throw error;
     }
     result.push(value);
   };
+
+  // eslint-disable-next-line no-param-reassign
   rebuildURI = returnAsObjects ? false : rebuildURI || false;
 
-  let result = [];
+  // Note:
+  // "The airbnb style guide recommends not using for...of for _web apps_
+  // because it requires a large polyfill. (...)"
+  // -- <https://gist.github.com/prowlee/e8833a8a02687d614d40c09bc5bdb807>
+  //
+  // Blacklisting "ForOfStatement" seems impossible(?), disable
+  // the no-restricted-syntax per line, for now.
+
   if (nargs && nargs.length > 0) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const narg of nargs) {
       addItem(narg);
     }
   } else {
     const stdin = createInterface({ input: process.stdin });
+    // eslint-disable-next-line no-restricted-syntax
     for await (let line of stdin) {
       line = line.split("#", 1)[0].trim();
       addItem(line);
@@ -118,3 +133,5 @@ export const processInput = async ({
   }
   return result;
 };
+
+export default processInput;

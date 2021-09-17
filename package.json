@@ -22,7 +22,6 @@
     "src"
   ],
   "scripts": {
-    "prettier": "prettier-eslint --write \"**/*.@(js|md|json|yaml)\"",
     "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json ."
   },
   "dependencies": {
@@ -53,8 +52,15 @@
     "zeromq": "6.0.0-beta.6"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.4",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "^3.6.7",
-    "prettier-eslint-cli": "^5.0.1",
+    "prettier": "^2.4.1",
     "rimraf": "^3.0.2"
   }
 }

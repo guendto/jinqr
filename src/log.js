@@ -17,33 +17,6 @@
 import log4js from "log4js";
 
 /**
- * Initializes the logger.
- *
- * @arg {object} opts - the `jinqr` configuration options
- *
- * @func
- */
-export const initLogger = opts => {
-  log4js.configure({
-    appenders: {
-      console: {
-        type: "stderr",
-        layout: {
-          type: "pattern",
-          pattern: opts.loggerPattern
-        }
-      }
-    },
-    categories: {
-      default: { appenders: ["console"], level: opts.verbosityLevel }
-    }
-  });
-  getLogger().debug(
-    `logger initialized (level="${opts.verbosityLevel}")`
-  );
-};
-
-/**
  * Returns the logger instance.
  *
  * @returns {object} the logger instance
@@ -51,3 +24,30 @@ export const initLogger = opts => {
  * @func
  */
 export const getLogger = () => log4js.getLogger("jinqr");
+
+/**
+ * Initializes the logger.
+ *
+ * @arg {object} opts - the `jinqr` configuration options
+ *
+ * @func
+ */
+export const initLogger = (opts) => {
+  log4js.configure({
+    appenders: {
+      console: {
+        type: "stderr",
+        layout: {
+          type: "pattern",
+          pattern: opts.loggerPattern,
+        },
+      },
+    },
+    categories: {
+      default: { appenders: ["console"], level: opts.verbosityLevel },
+    },
+  });
+  getLogger().debug(
+    `logger initialized (level="${opts.verbosityLevel}")`
+  );
+};

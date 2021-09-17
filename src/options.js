@@ -21,16 +21,22 @@ import { load as loadYAML } from "js-yaml";
 import log4js from "log4js";
 import yargs from "yargs";
 
+// eslint-disable-next-line import/extensions
 import { xdgConfigPaths } from "./xdg.js";
+
+// "Update rules to support ES2022 class fields" (=> v8.0)
+// - <https://github.com/eslint/eslint/issues/14857>
 
 /**
  * The class used to parse the command line args.
  */
-export class Options {
+class Options {
   /** @static {string} */
   static #GROUP_NETWORK = "Network:";
+
   /** @static {string} */
   static #GROUP_OUTPUT = "Output:";
+
   /** @private */
   #name;
 
@@ -63,14 +69,14 @@ export class Options {
         .options({
           ...this.#generalGroup(),
           ...this.#networkGroup(),
-          ...this.#outputGroup()
+          ...this.#outputGroup(),
         })
         // See <https://git.io/JGPol> for "strict"
         .strict()
         // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
-        .config("config-file", "Load config from file", path => {
-          return this.#readConfigFile(path);
-        })
+        .config("config-file", "Load config from file", (path) =>
+          this.#readConfigFile(path)
+        )
         .config(configData).argv
     );
   }
@@ -85,8 +91,10 @@ export class Options {
    * @private
    */
   #xdgReadConfigFiles() {
-    let result = {};
+    const result = {};
     const configPaths = xdgConfigPaths(this.#name);
+    // See input.js for "airbnb-style note".
+    // eslint-disable-next-line no-restricted-syntax
     for (const path of configPaths) {
       if (existsSync(path)) {
         Object.assign(result, this.#readConfigFile(path));
@@ -104,7 +112,7 @@ export class Options {
    *
    * @private
    */
-  #readConfigFile = path => loadYAML(readFileSync(path)) || {};
+  #readConfigFile = (path) => loadYAML(readFileSync(path)) || {};
 
   /**
    * Return the general group of options.
@@ -113,28 +121,29 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #generalGroup() {
     return {
       "print-config-paths": {
         alias: "P",
         desc: "Show configuration file paths and exit",
-        type: "boolean"
+        type: "boolean",
       },
       "print-config": {
         alias: "D",
         desc: "Show configuration and exit",
-        type: "boolean"
+        type: "boolean",
       },
       "print-spinners": {
         alias: "N",
         desc: "Show available spinner names and exit",
-        type: "boolean"
+        type: "boolean",
       },
       "print-streams": {
         alias: "S",
         desc: "Show available streams and exit",
-        type: "boolean"
-      }
+        type: "boolean",
+      },
     };
   }
 
@@ -145,6 +154,7 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #outputGroup() {
     return {
       "logger-pattern": {
@@ -152,71 +162,71 @@ export class Options {
         group: Options.#GROUP_OUTPUT,
         desc: "Specify the logger pattern format to use",
         default: "%r %[%p%] - %m",
-        type: "string"
+        type: "string",
       },
       "output-template": {
         alias: "o",
         group: Options.#GROUP_OUTPUT,
         desc: "Output filename template to use",
         default: "{title} ({identifier}).{container}",
-        type: "string"
+        type: "string",
       },
       "overwrite-file": {
         alias: "W",
         group: Options.#GROUP_OUTPUT,
         desc: "Overwrite existing files",
-        type: "boolean"
+        type: "boolean",
       },
       "progressbar-eta-buffer": {
         group: Options.#GROUP_OUTPUT,
         desc: "Number of updates used to calculate the ETA",
         default: 128,
-        type: "number"
+        type: "number",
       },
       "progressbar-format": {
         group: Options.#GROUP_OUTPUT,
         desc: "Customize progress bar layout",
         default:
           "| {bar} {percentage}% || {received}/{expected} | {eta_formatted} | {rate}/s",
-        type: "string"
+        type: "string",
       },
       "progressbar-fps": {
         group: Options.#GROUP_OUTPUT,
         desc: "Maximum update rate",
         default: 5,
-        type: "number"
+        type: "number",
       },
       "progressbar-size": {
         group: Options.#GROUP_OUTPUT,
         desc: "Length of the progress bar in chars",
         default: 25,
-        type: "number"
+        type: "number",
       },
       "progressbar-type": {
         group: Options.#GROUP_OUTPUT,
         desc: "Progressbar type to use",
         choices: Object.keys(Presets),
         default: "rect",
-        type: "string"
+        type: "string",
       },
       "skip-download": {
         alias: "n",
         group: Options.#GROUP_OUTPUT,
         desc: "Skip download, show details only",
-        type: "boolean"
+        type: "boolean",
       },
       "spinner-type": {
         alias: "T",
         group: Options.#GROUP_OUTPUT,
         desc: "Spinner type to use, see also --print-Spinners",
         default: "dots",
-        type: "string"
+        type: "string",
       },
       stream: {
         alias: "s",
         group: Options.#GROUP_OUTPUT,
         desc: "Stream profile to download, see --print-streams also",
-        type: "string"
+        type: "string",
       },
       "verbosity-level": {
         alias: "l",
@@ -224,11 +234,11 @@ export class Options {
         desc: "Define verbosity level",
         // See <https://git.io/JG74B> for levels
         choices: Object.keys(log4js.levels)
-          .filter(level => level !== "levels")
-          .map(level => level.toLowerCase()),
+          .filter((level) => level !== "levels")
+          .map((level) => level.toLowerCase()),
         default: "info",
-        type: "string"
-      }
+        type: "string",
+      },
     };
   }
 
@@ -239,6 +249,7 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #networkGroup() {
     return {
       "router-endpoint": {
@@ -246,34 +257,34 @@ export class Options {
         group: Options.#GROUP_NETWORK,
         desc: "Jomiel router endpoint address",
         default: "tcp://localhost:5514",
-        type: "string"
+        type: "string",
       },
       "connect-timeout": {
         alias: "t",
         group: Options.#GROUP_NETWORK,
         desc: "Time allowed connection to jomiel to take",
         default: 30,
-        type: "number"
+        type: "number",
       },
       "http-range": {
         group: Options.#GROUP_NETWORK,
         desc: "Byte range to download, e.g. 12345-67890",
-        type: "string"
+        type: "string",
       },
       "http-user-agent": {
         group: Options.#GROUP_NETWORK,
         desc: "Identify as <string> to HTTP server",
-        type: "string"
+        type: "string",
       },
       "http-connect-timeout": {
         group: Options.#GROUP_NETWORK,
         desc: "Time allowed connection to HTTP servers to take",
         default: 30,
-        type: "number"
-      }
+        type: "number",
+      },
     };
   }
 }
 
 // factory function for Options.
-export default name => new Options(name);
+export default (name) => new Options(name);

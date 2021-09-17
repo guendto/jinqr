@@ -17,11 +17,12 @@
  */
 import prettyBytes from "pretty-bytes";
 
+/* eslint-disable import/extensions */
 import Options from "./options.js";
 import Jomiel from "./jomiel.js";
 import { httpSetupGlobalProxy, httpDownloadStream } from "./http.js";
-import { processInput } from "./input.js";
-import { selectStream } from "./stream.js";
+import processInput from "./input.js";
+import selectStream from "./stream.js";
 import { initLogger, getLogger } from "./log.js";
 import {
   printConfigPaths,
@@ -29,12 +30,13 @@ import {
   printDownload,
   printError,
   printSpinners,
-  printStreams
+  printStreams,
 } from "./printer.js";
 
 /**
  * the program main entry point.
  */
+// eslint-disable-next-line consistent-return
 (async () => {
   const name = "jinqr";
   const opts = Options(name).parse();
@@ -70,35 +72,34 @@ import {
   httpSetupGlobalProxy();
   const jomiel = Jomiel(opts);
 
-  for (const uri of inputURIs) {
+  // See input.js for "airbnb-style note".
+  // eslint-disable-next-line no-restricted-syntax
+  for await (const uri of inputURIs) {
     const response = await jomiel.inquire(uri);
     logger.trace(response);
 
     if (opts.printStreams) {
       printStreams(response);
-      continue;
-    }
-
-    const stream = await selectStream(opts, response);
-    logger.trace("selected", stream);
-
-    if (opts.skipDownload) {
-      printDownload(stream);
-      continue;
-    }
-
-    try {
-      await httpDownloadStream({ opts, selectedStream: stream });
-    } catch (error) {
-      printError(error);
+    } else {
+      const stream = await selectStream(opts, response);
+      logger.trace("selected", stream);
+      if (opts.skipDownload) {
+        printDownload(stream);
+      } else {
+        try {
+          await httpDownloadStream({ opts, selectedStream: stream });
+        } catch (error) {
+          printError(error);
+        }
+      }
     }
   }
 })();
 
-process.on("exit", code => {
+process.on("exit", (code) => {
   const logger = getLogger();
   const heapUsed = prettyBytes(process.memoryUsage().heapUsed, {
-    bits: true
+    bits: true,
   });
   return logger.debug(
     `exit with ${code}, memory used (heap): ${heapUsed}`

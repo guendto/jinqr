@@ -82,23 +82,34 @@ export const xdgConfigPaths = (
   name,
   {
     configFiles = ["config.yaml", "config.json"],
-    includeCWD = true
+    includeCWD = true,
   } = {}
 ) => {
   const result = [];
+
+  // See input.js for "for...of airbnb-style note".
+
+  // eslint-disable-next-line no-restricted-syntax
   for (const dir of xdgConfigDirs()) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const configFile of configFiles) {
       result.push(join(dir, name, configFile));
     }
   }
+
   const configHome = xdgConfigHome();
+
+  // eslint-disable-next-line no-restricted-syntax
   for (const configFile of configFiles) {
     result.push(join(configHome, name, configFile));
   }
+
   if (includeCWD) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const configFile of configFiles) {
       result.push(`./${configFile}`);
     }
   }
+
   return result;
 };
