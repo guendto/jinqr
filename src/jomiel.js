@@ -34,7 +34,7 @@ const { Inquiry, Response, StatusCode } =
 /**
  * The class used to communicate with `jomiel`.
  */
-export class Jomiel {
+class Jomiel {
   /** @private * */
   #spinner;
 
