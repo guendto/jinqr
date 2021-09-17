@@ -321,5 +321,5 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
     );
     logger.debug(`total time: ${prettyMs(elapsed.milliseconds)}`);
   }
-  logger.info("download complete");
+  return logger.info("download complete");
 };
