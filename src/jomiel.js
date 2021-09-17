@@ -136,29 +136,29 @@ export class Jomiel {
     const msg = Response.decode(bytes);
     this.#logger.trace("receiveResponse: msg:", msg);
 
+    /**
+     * "Slugify" media the stream profiles for easier use with cli.
+     *
+     * @arg {object} response - the `jomiel` response
+     *
+     * @returns {object} the `jomiel` response message.
+     *
+     * @private
+     */
+    const slugifyProfiles = (response) => {
+      const result = [];
+      for (const stream of response.media.stream) {
+        stream.quality.profile = slugify(stream.quality.profile);
+        result.push(stream);
+      }
+      response.media.stream = result;
+      return response;
+    };
+
     if (msg.status.code === StatusCode.STATUS_CODE_OK) {
-      return this.#slugifyProfiles(msg);
+      return slugifyProfiles(msg);
     }
     throw new Error(msg.status.message);
-  }
-
-  /**
-   * "Slugify" media the stream profiles for easier use with cli.
-   *
-   * @arg {object} response - the `jomiel` response
-   *
-   * @returns {object} the `jomiel` response message.
-   *
-   * @private
-   */
-  #slugifyProfiles(response) {
-    const result = [];
-    for (const stream of response.media.stream) {
-      stream.quality.profile = slugify(stream.quality.profile);
-      result.push(stream);
-    }
-    response.media.stream = result;
-    return response;
   }
 }
 
