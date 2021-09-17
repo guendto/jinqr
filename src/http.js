@@ -31,6 +31,7 @@ import protobuf from "protobufjs";
 import uaString from "ua-string";
 import TransferRate from "simple-eta";
 
+// eslint-disable-next-line import/extensions
 import { getLogger } from "./log.js";
 
 /**
