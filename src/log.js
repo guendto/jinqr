@@ -23,20 +23,20 @@ import log4js from "log4js";
  *
  * @func
  */
-export const initLogger = opts => {
+export const initLogger = (opts) => {
   log4js.configure({
     appenders: {
       console: {
         type: "stderr",
         layout: {
           type: "pattern",
-          pattern: opts.loggerPattern
-        }
-      }
+          pattern: opts.loggerPattern,
+        },
+      },
     },
     categories: {
-      default: { appenders: ["console"], level: opts.verbosityLevel }
-    }
+      default: { appenders: ["console"], level: opts.verbosityLevel },
+    },
   });
   getLogger().debug(
     `logger initialized (level="${opts.verbosityLevel}")`
