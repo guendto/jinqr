@@ -103,6 +103,7 @@ const processInput = async ({
     result.push(value);
   };
 
+  // eslint-disable-next-line no-param-reassign
   rebuildURI = returnAsObjects ? false : rebuildURI || false;
 
   // Note:
