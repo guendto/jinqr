@@ -63,6 +63,8 @@ const processInput = async ({
   returnAsObjects = false,
   returnUniqueItems = true,
 } = {}) => {
+  let result = [];
+
   /**
    * Process and validate the given value as a valid URI. Push the item
    * into the `result` array if it qualifies.
@@ -102,7 +104,6 @@ const processInput = async ({
   };
   rebuildURI = returnAsObjects ? false : rebuildURI || false;
 
-  let result = [];
   if (nargs && nargs.length > 0) {
     for (const narg of nargs) {
       addItem(narg);
