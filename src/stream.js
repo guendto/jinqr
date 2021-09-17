@@ -99,6 +99,7 @@ const selectStream = async (opts, response) => {
         iso8601: now.toISOString().split("T")[0],
       });
 
+      // eslint-disable-next-line no-param-reassign
       selectedStream.placeholder = {
         container: extensionFrom(selectedStream.mimeType),
         quality: selectedStream.quality,
