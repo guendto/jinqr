@@ -22,6 +22,7 @@ import filenamify from "filenamify";
 import untildify from "untildify";
 import pupa from "pupa";
 
+/* eslint-disable import/extensions */
 import { httpSendHead } from "./http.js";
 import { getLogger } from "./log.js";
 
