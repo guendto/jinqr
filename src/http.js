@@ -229,7 +229,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
   const readStream = got.stream(selectedStream.uri, data.opts.http);
   readStream
     // While we download.
-    .on("downloadProgress", ({ transferred, total, percent }) => {
+    .on("downloadProgress", ({ transferred, total }) => {
       // Skip, if logging is off.
       if (opts.verbosityLevel === "off" || !total) {
         return;
