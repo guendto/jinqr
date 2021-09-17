@@ -121,6 +121,7 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #generalGroup() {
     return {
       "print-config-paths": {
@@ -153,6 +154,7 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #outputGroup() {
     return {
       "logger-pattern": {
@@ -247,6 +249,7 @@ export class Options {
    *
    * @private
    */
+  // eslint-disable-next-line class-methods-use-this
   #networkGroup() {
     return {
       "router-endpoint": {
