@@ -43,9 +43,9 @@ const selectStream = async (opts, response) => {
 
   // Select the stream based on the --stream value.
   if (opts.stream) {
-    result = response.media.stream.filter(
-      (stream) => stream.quality.profile === opts.stream
-    )[0];
+    result = response.media.stream.find(
+      (x) => x.quality.profile === opts.stream
+    );
   }
 
   const logger = getLogger();
