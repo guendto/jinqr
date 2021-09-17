@@ -57,12 +57,12 @@ const getHttpOptions = (opts, { httpRange = null } = {}) => {
   // Construct the HTTP options.
   let result = {
     headers: {
-      "user-agent": opts.httpUserAgent || uaString
+      "user-agent": opts.httpUserAgent || uaString,
     },
     timeout: {
-      connect: opts.httpConnectTimeout * 1000
+      connect: opts.httpConnectTimeout * 1000,
     },
-    followRedirect: true
+    followRedirect: true,
   };
   // Add HTTP range to the request, if it was given.
   if (httpRange) {
@@ -97,7 +97,7 @@ export const httpSendHead = async ({ opts, selectedStream }) => {
   const spinner = ora({
     text: "awaiting for an http head response...",
     isSilent: opts.verbosityLevel === "off",
-    spinner: opts.spinnerType
+    spinner: opts.spinnerType,
   }).start();
 
   // Send the HTTP HEAD request.
@@ -193,9 +193,9 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
     opts: {
       bytes: {
         maximumFractionDigits: 1,
-        minimumFractionDigits: 1
+        minimumFractionDigits: 1,
       },
-      http: getHttpOptions(opts, { httpRange })
+      http: getHttpOptions(opts, { httpRange }),
     },
     bar: new Bar(
       {
@@ -203,10 +203,10 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
         etaBuffer: opts.progressbarEtaBuffer,
         format: opts.progressbarFormat,
         fps: opts.progressbarFps,
-        hideCursor: true
+        hideCursor: true,
       },
       Presets[opts.progressbarType] ?? Presets.rect
-    )
+    ),
   };
 
   logger.trace("data.opts.http", data.opts.http);
@@ -218,7 +218,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
    *
    * @fund getTransferRate
    */
-  const getTransferRate = transferred => {
+  const getTransferRate = (transferred) => {
     data.eta.report(transferred);
     return prettyBytes(data.eta.rate(), { bits: true });
   };
@@ -240,13 +240,13 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
         data.bar.start(total, 0, {
           received: 0,
           expected: 0,
-          rate: 0
+          rate: 0,
         });
         // Start ETA.
         data.eta = new transferRate({
           min: 0,
           max: total,
-          autostart: true
+          autostart: true,
         });
       }
 
@@ -254,7 +254,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
       data.bar.update(transferred, {
         rate: getTransferRate(transferred),
         received: prettyBytes(transferred, data.opts.bytes),
-        expected: prettyBytes(total, data.opts.bytes)
+        expected: prettyBytes(total, data.opts.bytes),
       });
 
       // Store for later use.
@@ -267,13 +267,13 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
       data.spinner.text = `${chalk.cyan("upload")}: ${percent}%`;
     })
     // When we send the request.
-    .on("request", request => {
+    .on("request", (request) => {
       if (logger.isDebugEnabled()) {
         logger.trace("request", request);
       }
     })
     // When we receive a response.
-    .on("response", response => {
+    .on("response", (response) => {
       if (logger.isDebugEnabled()) {
         logger.trace("response", response.headers);
       }
@@ -291,7 +291,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
       return process.stdout;
     }
     const streamOptions = {
-      flags: httpRange && !opts.overwriteFile ? "a+" : "w"
+      flags: httpRange && !opts.overwriteFile ? "a+" : "w",
     };
     logger.trace("streamOptions", streamOptions);
     return createWriteStream(
@@ -303,7 +303,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
   // Create a spinner.
   data.spinner = ora({
     isSilent: opts.verbosityLevel === "off",
-    spinner: opts.spinnerType
+    spinner: opts.spinnerType,
   }).start();
 
   // Begin the transfer.
