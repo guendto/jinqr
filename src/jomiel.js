@@ -22,11 +22,8 @@ import ora from "ora";
 
 import { Request } from "zeromq";
 
-const {
-  Inquiry,
-  Response,
-  StatusCode
-} = jomielMessages.jomiel.protobuf.v1beta1;
+const { Inquiry, Response, StatusCode } =
+  jomielMessages.jomiel.protobuf.v1beta1;
 
 import { getLogger } from "./log.js";
 import { printError } from "./printer.js";
@@ -123,7 +120,7 @@ export class Jomiel {
     this.#spinner = ora({
       text: "<jomiel> awaiting for a response...",
       isSilent: this.#opts.verbosityLevel === "off",
-      spinner: this.#opts.spinnerType
+      spinner: this.#opts.spinnerType,
     }).start();
 
     const [bytes] = await this.#sck.receive();
@@ -160,4 +157,4 @@ export class Jomiel {
 }
 
 // factory function for Jomiel.
-export default options => new Jomiel(options);
+export default (options) => new Jomiel(options);
