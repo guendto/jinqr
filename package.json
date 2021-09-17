@@ -62,7 +62,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "^3.6.7",
     "prettier": "^2.4.1",
-    "prettier-eslint-cli": "^5.0.1",
     "rimraf": "^3.0.2"
   }
 }
