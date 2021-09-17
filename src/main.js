@@ -80,21 +80,18 @@ import {
 
     if (opts.printStreams) {
       printStreams(response);
-      continue;
-    }
-
-    const stream = await selectStream(opts, response);
-    logger.trace("selected", stream);
-
-    if (opts.skipDownload) {
-      printDownload(stream);
-      continue;
-    }
-
-    try {
-      await httpDownloadStream({ opts, selectedStream: stream });
-    } catch (error) {
-      printError(error);
+    } else {
+      const stream = await selectStream(opts, response);
+      logger.trace("selected", stream);
+      if (opts.skipDownload) {
+        printDownload(stream);
+      } else {
+        try {
+          await httpDownloadStream({ opts, selectedStream: stream });
+        } catch (error) {
+          printError(error);
+        }
+      }
     }
   }
 })();
