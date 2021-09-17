@@ -29,7 +29,7 @@ import {
   printDownload,
   printError,
   printSpinners,
-  printStreams
+  printStreams,
 } from "./printer.js";
 
 /**
@@ -95,10 +95,10 @@ import {
   }
 })();
 
-process.on("exit", code => {
+process.on("exit", (code) => {
   const logger = getLogger();
   const heapUsed = prettyBytes(process.memoryUsage().heapUsed, {
-    bits: true
+    bits: true,
   });
   return logger.debug(
     `exit with ${code}, memory used (heap): ${heapUsed}`
