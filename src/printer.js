@@ -51,9 +51,9 @@ export const printConfigPaths = (name) => {
 export const printConfig = (opts) => {
   let result = {};
   Object.entries(opts).forEach(([key, value]) => {
-    if (key.length > 2) {
+    if (key === "_" || key.length > 2) {
       // eslint-disable-next-line no-param-reassign
-      key = camelCase(key);
+      key = key === "_" ? "uri" : camelCase(key);
       result[key] = value;
     }
   });
