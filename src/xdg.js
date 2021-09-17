@@ -82,7 +82,7 @@ export const xdgConfigPaths = (
   name,
   {
     configFiles = ["config.yaml", "config.json"],
-    includeCWD = true
+    includeCWD = true,
   } = {}
 ) => {
   const result = [];
