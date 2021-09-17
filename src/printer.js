@@ -87,6 +87,8 @@ export const printSpinners = () => {
  */
 export const printStreams = (response) => {
   const table = new Table();
+  // See input.js for "airbnb-style note".
+  // eslint-disable-next-line no-restricted-syntax
   for (const stream of response.media.stream) {
     table.addRow({
       profile: stream.quality.profile,
