@@ -66,12 +66,11 @@ const selectStream = async (opts, response) => {
   /**
    * Determine the path to the saved file.
    *
-   * @arg {object} response - the `jomiel` response
    * @arg {object} selectedStream - the selected stream
    *
    * @func determineFilePath
    */
-  const determineFilePath = async (response, selectedStream) => {
+  const determineFilePath = async (selectedStream) => {
     /**
      * Return the placeholder data.
      *
@@ -147,7 +146,7 @@ const selectStream = async (opts, response) => {
   // - output-template "-" is reserved for stdout
   // - skip this step if "-" is specified
   if (opts.outputTemplate !== "-") {
-    await determineFilePath(response, result);
+    await determineFilePath(result);
   }
 
   return result;
