@@ -107,7 +107,7 @@ export const httpSendHead = async ({ opts, selectedStream }) => {
 
   // Try to retrieve the content-{type,length} from the response.
   const contentLength = Number(result.headers["content-length"]);
-  const Long = protobuf.util.Long;
+  const { Long } = protobuf.util;
 
   selectedStream.contentLength = Long.fromNumber(contentLength);
   selectedStream.mimeType = result.headers["content-type"];
