@@ -17,11 +17,11 @@
 import jomielMessages from "jomiel-messages";
 import slugify from "@sindresorhus/slugify";
 import humanizeUri from "humanize-url";
+import { Request } from "zeromq";
 import chalk from "chalk";
 import ora from "ora";
 
-import { Request } from "zeromq";
-
+/* eslint-disable import/extensions */
 import { getLogger } from "./log.js";
 import { printError } from "./printer.js";
 
