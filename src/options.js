@@ -72,7 +72,7 @@ class Options {
           ...this.#outputGroup(),
         })
         // See <https://git.io/JGPol> for "strict"
-        .strict()
+        .strictOptions()
         // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
         .config("config-file", "Load config from file", (path) =>
           this.#readConfigFile(path)
