@@ -30,7 +30,7 @@ import { xdgConfigPaths } from "./xdg.js";
 /**
  * The class used to parse the command line args.
  */
-export class Options {
+class Options {
   /** @static {string} */
   static #GROUP_NETWORK = "Network:";
 
