@@ -152,7 +152,7 @@ export class Jomiel {
    * @private
    */
   #slugifyProfiles(response) {
-    let result = [];
+    const result = [];
     for (const stream of response.media.stream) {
       stream.quality.profile = slugify(stream.quality.profile);
       result.push(stream);
