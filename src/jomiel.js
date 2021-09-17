@@ -72,7 +72,7 @@ export class Jomiel {
     } catch (error) {
       this.#spinner?.stop();
       error.message = `<jomiel> ${error.message}`;
-      printError(error);
+      return printError(error);
     }
   }
 
