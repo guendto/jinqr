@@ -89,6 +89,7 @@ const processInput = async ({
         value = uri.toString();
       }
       if (returnAsObjects) {
+        // eslint-disable-next-line no-param-reassign
         value = uri;
       }
     } catch (error) {
