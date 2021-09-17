@@ -136,7 +136,7 @@ export class Jomiel {
     const msg = Response.decode(bytes);
     this.#logger.trace("receiveResponse: msg:", msg);
 
-    if (msg.status.code == StatusCode.STATUS_CODE_OK) {
+    if (msg.status.code === StatusCode.STATUS_CODE_OK) {
       return this.#slugifyProfiles(msg);
     }
     throw new Error(msg.status.message);
