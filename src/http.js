@@ -55,7 +55,7 @@ export const httpSetupGlobalProxy = () => {
  */
 const getHttpOptions = (opts, { httpRange = null } = {}) => {
   // Construct the HTTP options.
-  let result = {
+  const result = {
     headers: {
       "user-agent": opts.httpUserAgent || uaString,
     },
