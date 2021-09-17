@@ -17,6 +17,15 @@
 import log4js from "log4js";
 
 /**
+ * Returns the logger instance.
+ *
+ * @returns {object} the logger instance
+ *
+ * @func
+ */
+export const getLogger = () => log4js.getLogger("jinqr");
+
+/**
  * Initializes the logger.
  *
  * @arg {object} opts - the `jinqr` configuration options
@@ -42,12 +51,3 @@ export const initLogger = (opts) => {
     `logger initialized (level="${opts.verbosityLevel}")`
   );
 };
-
-/**
- * Returns the logger instance.
- *
- * @returns {object} the logger instance
- *
- * @func
- */
-export const getLogger = () => log4js.getLogger("jinqr");
