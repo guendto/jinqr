@@ -58,7 +58,7 @@ const selectStream = async (opts, response) => {
   }
 
   // Send HTTP HEAD to retrieve the missing content-{type,length}.
-  if (!result.mimeType || result.contentLength.toNumber() == 0) {
+  if (!result.mimeType || result.contentLength.toNumber() === 0) {
     await httpSendHead({ opts, selectedStream: result });
     logger.trace(result);
   }
