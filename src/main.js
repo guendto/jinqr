@@ -72,6 +72,8 @@ import {
   httpSetupGlobalProxy();
   const jomiel = Jomiel(opts);
 
+  // See input.js for "airbnb-style note".
+  // eslint-disable-next-line no-restricted-syntax
   for (const uri of inputURIs) {
     const response = await jomiel.inquire(uri);
     logger.trace(response);
