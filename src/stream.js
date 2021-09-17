@@ -131,6 +131,7 @@ const selectStream = async (opts, response) => {
     const fileName = filenamify(appliedName, namifyOpts);
 
     // Rejoin the reformatted file name with the expanded dir path.
+    // eslint-disable-next-line no-param-reassign
     selectedStream.saveTo = {
       fullPath: join(dirPath, fileName),
       fileName,
