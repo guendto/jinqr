@@ -94,7 +94,7 @@ const processInput = async ({
       }
     } catch (error) {
       if (error.constructor === TypeError) {
-        error = new Error(`${error.message}: ${error.input}`);
+        throw new Error(`${error.message}: ${error.input}`);
       }
       throw error;
     }
