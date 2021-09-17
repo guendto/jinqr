@@ -91,7 +91,7 @@ export class Options {
    * @private
    */
   #xdgReadConfigFiles() {
-    let result = {};
+    const result = {};
     const configPaths = xdgConfigPaths(this.#name);
     for (const path of configPaths) {
       if (existsSync(path)) {
