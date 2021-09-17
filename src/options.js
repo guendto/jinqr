@@ -21,6 +21,7 @@ import { load as loadYAML } from "js-yaml";
 import log4js from "log4js";
 import yargs from "yargs";
 
+// eslint-disable-next-line import/extensions
 import { xdgConfigPaths } from "./xdg.js";
 
 // "Update rules to support ES2022 class fields" (=> v8.0)
