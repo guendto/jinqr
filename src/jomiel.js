@@ -35,13 +35,16 @@ const { Inquiry, Response, StatusCode } =
  * The class used to communicate with `jomiel`.
  */
 export class Jomiel {
-  /** @private **/
+  /** @private * */
   #spinner;
-  /** @private **/
+
+  /** @private * */
   #logger;
-  /** @private **/
+
+  /** @private * */
   #opts;
-  /** @private **/
+
+  /** @private * */
   #sck;
 
   /**
