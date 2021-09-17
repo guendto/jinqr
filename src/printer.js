@@ -32,7 +32,7 @@ import { xdgConfigPaths } from "./xdg.js";
  *
  * @func
  */
-export const printConfigPaths = name => {
+export const printConfigPaths = (name) => {
   const paths = xdgConfigPaths(name);
   const result = dumpYAML(paths);
   process.stdout.write(`---\n${result}`);
@@ -45,7 +45,7 @@ export const printConfigPaths = name => {
  *
  * @func
  */
-export const printConfig = opts => {
+export const printConfig = (opts) => {
   let result = {};
   Object.entries(opts).forEach(([key, value]) => {
     if (key.length > 2) {
@@ -79,7 +79,7 @@ export const printSpinners = () => {
  *
  * @func
  */
-export const printStreams = response => {
+export const printStreams = (response) => {
   const table = new Table();
   for (const stream of response.media.stream) {
     table.addRow({
@@ -87,7 +87,7 @@ export const printStreams = response => {
       container: mimeTypes.extension(stream.mimeType),
       codecs: (stream.mimeType.match(/"(.*)"/) || ["?", "?"])[1],
       bitrate: prettyBytes(stream.quality.bitrate, { bits: true }),
-      length: prettyBytes(stream.contentLength.toNumber())
+      length: prettyBytes(stream.contentLength.toNumber()),
     });
   }
   table.printTable();
@@ -100,17 +100,17 @@ export const printStreams = response => {
  *
  * @func
  */
-export const printDownload = selectedStream => {
+export const printDownload = (selectedStream) => {
   const table = new Table({
     columns: [
       { name: "destination", maxLen: 60 },
-      { name: "length", minLen: 16 }
-    ]
+      { name: "length", minLen: 16 },
+    ],
   });
   table.addRow({
     destination:
       selectedStream.saveTo?.fullPath ?? "(stream to stdout)",
-    length: prettyBytes(selectedStream.contentLength.toNumber())
+    length: prettyBytes(selectedStream.contentLength.toNumber()),
   });
   table.printTable();
 };
@@ -124,7 +124,7 @@ export const printDownload = selectedStream => {
  *
  * @func
  */
-export const printError = error => {
+export const printError = (error) => {
   const logger = getLogger();
   logger.error(
     logger.isDebugEnabled()
