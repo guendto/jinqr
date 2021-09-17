@@ -264,7 +264,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
       data.lastTransferred = transferred;
     })
     // While we upload.
-    .on("uploadProgress", ({ total, percent }) => {
+    .on("uploadProgress", ({ percent }) => {
       percent = Math.round(percent * 100);
       data.spinner.text = `${chalk.cyan("upload")}: ${percent}%`;
     })
