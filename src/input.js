@@ -56,7 +56,7 @@ import { URL } from "url";
  *
  * @func
  */
-export const processInput = async ({
+const processInput = async ({
   nargs = undefined,
   httpOnly = true,
   rebuildURI = true,
@@ -118,3 +118,5 @@ export const processInput = async ({
   }
   return result;
 };
+
+export default processInput;
