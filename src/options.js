@@ -74,9 +74,9 @@ export class Options {
         // See <https://git.io/JGPol> for "strict"
         .strict()
         // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
-        .config("config-file", "Load config from file", (path) => {
-          return this.#readConfigFile(path);
-        })
+        .config("config-file", "Load config from file", (path) =>
+          this.#readConfigFile(path)
+        )
         .config(configData).argv
     );
   }
