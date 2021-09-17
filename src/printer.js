@@ -50,6 +50,7 @@ export const printConfig = (opts) => {
   let result = {};
   Object.entries(opts).forEach(([key, value]) => {
     if (key.length > 2) {
+      // eslint-disable-next-line no-param-reassign
       key = camelCase(key);
       result[key] = value;
     }
