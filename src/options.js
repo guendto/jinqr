@@ -33,8 +33,10 @@ import { xdgConfigPaths } from "./xdg.js";
 export class Options {
   /** @static {string} */
   static #GROUP_NETWORK = "Network:";
+
   /** @static {string} */
   static #GROUP_OUTPUT = "Output:";
+
   /** @private */
   #name;
 
