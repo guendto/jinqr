@@ -44,7 +44,7 @@
     "pretty-bytes": "^5.6.0",
     "pretty-ms": "^7.0.1",
     "protobufjs": "^6.11.2",
-    "pupa": "^2.1.1",
+    "pupa": "^3.1.0",
     "simple-eta": "^3.0.2",
     "ua-string": "^4.0.0",
     "untildify": "^4.0.0",
