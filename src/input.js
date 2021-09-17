@@ -61,7 +61,7 @@ export const processInput = async ({
   httpOnly = true,
   rebuildURI = true,
   returnAsObjects = false,
-  returnUniqueItems = true
+  returnUniqueItems = true,
 } = {}) => {
   /**
    * Process and validate the given value as a valid URI. Push the item
@@ -71,7 +71,7 @@ export const processInput = async ({
    *
    * @func addItem
    */
-  const addItem = value => {
+  const addItem = (value) => {
     if (!value || value.length === 0) {
       return;
     }
