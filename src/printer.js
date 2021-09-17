@@ -22,6 +22,7 @@ import cliSpinners from "cli-spinners";
 import mimeTypes from "mime-types";
 import prettyBytes from "pretty-bytes";
 
+/* eslint-disable import/extensions */
 import { getLogger } from "./log.js";
 import { xdgConfigPaths } from "./xdg.js";
 
