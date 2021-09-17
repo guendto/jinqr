@@ -35,7 +35,7 @@
     "filenamify": "^5.0.1",
     "global-agent": "^3.0.0",
     "got": "^11.8.2",
-    "humanize-url": "^2.1.1",
+    "humanize-url": "^3.0.0",
     "jomiel-messages": "^0.2.0",
     "js-yaml": "^4.1.0",
     "log4js": "^6.3.0",
