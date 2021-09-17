@@ -17,8 +17,8 @@ The simple [jomiel] client for downloading media streams.
 
 ## Features
 
-- **Configurable**. Supports YAML and JSON configuration. [XDG Base
-  Directory Specification] aware.
+- **Highly configurable**. Supports YAML and JSON configuration. [XDG
+  Base Directory Specification] aware.
 
 - **Pipable**. Supports streaming the media being downloaded to the
   [standard output](#examples).
