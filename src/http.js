@@ -109,7 +109,9 @@ export const httpSendHead = async ({ opts, selectedStream }) => {
   const contentLength = Number(result.headers["content-length"]);
   const { Long } = protobuf.util;
 
+  // eslint-disable-next-line no-param-reassign
   selectedStream.contentLength = Long.fromNumber(contentLength);
+  // eslint-disable-next-line no-param-reassign
   selectedStream.mimeType = result.headers["content-type"];
 };
 
