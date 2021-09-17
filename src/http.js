@@ -265,6 +265,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
     })
     // While we upload.
     .on("uploadProgress", ({ percent }) => {
+      // eslint-disable-next-line no-param-reassign
       percent = Math.round(percent * 100);
       data.spinner.text = `${chalk.cyan("upload")}: ${percent}%`;
     })
