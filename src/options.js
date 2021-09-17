@@ -23,6 +23,9 @@ import yargs from "yargs";
 
 import { xdgConfigPaths } from "./xdg.js";
 
+// "Update rules to support ES2022 class fields" (=> v8.0)
+// - <https://github.com/eslint/eslint/issues/14857>
+
 /**
  * The class used to parse the command line args.
  */
