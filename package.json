@@ -22,7 +22,6 @@
     "src"
   ],
   "scripts": {
-    "prettier": "prettier-eslint --write \"**/*.@(js|md|json|yaml)\"",
     "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json ."
   },
   "dependencies": {
