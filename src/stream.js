@@ -89,17 +89,15 @@ const selectStream = async (opts, response) => {
        *
        * @func getDate
        */
-      const getDate = () => {
-        return {
-          locale: now.toLocaleDateString(undefined, {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          }),
-          iso8601: now.toISOString().split("T")[0],
-        };
-      };
+      const getDate = () => ({
+        locale: now.toLocaleDateString(undefined, {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
+        iso8601: now.toISOString().split("T")[0],
+      });
 
       selectedStream.placeholder = {
         container: extensionFrom(selectedStream.mimeType),
