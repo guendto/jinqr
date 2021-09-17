@@ -28,7 +28,7 @@ The simple [jomiel] client for downloading media streams.
 
 - **Client**. Communicates with [jomiel] and media hosting websites.
 
-- **Flexible**. Many output features are customizable.
+- **Flexible**. Most output features are customizable.
 
 - **Simplistic**. Small and simple.
 
