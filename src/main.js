@@ -22,7 +22,7 @@ import Options from "./options.js";
 import Jomiel from "./jomiel.js";
 import { httpSetupGlobalProxy, httpDownloadStream } from "./http.js";
 import processInput from "./input.js";
-import { selectStream } from "./stream.js";
+import selectStream from "./stream.js";
 import { initLogger, getLogger } from "./log.js";
 import {
   printConfigPaths,
