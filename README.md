@@ -159,7 +159,9 @@ step will replace the existing values):
 
 The XDG configuration paths can be defined by the following environment
 variables. See also the complete [XDG Base Directory
-Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+Specification].
+
+[xdg base directory specification]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 
 ##### XDG_CONFIG_DIRS
 
