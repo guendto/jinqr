@@ -102,6 +102,7 @@ const processInput = async ({
     }
     result.push(value);
   };
+
   rebuildURI = returnAsObjects ? false : rebuildURI || false;
 
   if (nargs && nargs.length > 0) {
