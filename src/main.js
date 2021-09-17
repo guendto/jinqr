@@ -36,6 +36,7 @@ import {
 /**
  * the program main entry point.
  */
+// eslint-disable-next-line consistent-return
 (async () => {
   const name = "jinqr";
   const opts = Options(name).parse();
