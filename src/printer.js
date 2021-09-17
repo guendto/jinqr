@@ -65,6 +65,8 @@ export const printConfig = (opts) => {
  * @func
  */
 export const printSpinners = () => {
+  // See input.js for "airbnb-style note".
+  // eslint-disable-next-line no-restricted-syntax
   for (const name of Object.keys(cliSpinners)) {
     const frames = cliSpinners[name].frames;
     if (frames) {
