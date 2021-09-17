@@ -10,6 +10,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+/* eslint-disable no-console */
+
 /**
  * The printer module of `jinqr`.
  * @module
