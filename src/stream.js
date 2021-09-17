@@ -37,7 +37,7 @@ import { getLogger } from "./log.js";
  * @returns {object} the selected stream from the `jomiel` response
  * @func
  */
-export const selectStream = async (opts, response) => {
+const selectStream = async (opts, response) => {
   // Use the first available stream as the "default" stream.
   let result = response.media.stream[0];
 
@@ -153,3 +153,5 @@ export const selectStream = async (opts, response) => {
 
   return result;
 };
+
+export default selectStream;
