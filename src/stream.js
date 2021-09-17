@@ -74,13 +74,11 @@ const selectStream = async (opts, response) => {
     /**
      * Return the placeholder data.
      *
-     * @arg {object} selectedStream - the selected stream
-     *
      * @returns {object} containing the placeholder data
      *
      * @func initPlaceholderData
      */
-    const initPlaceholderData = (selectedStream) => {
+    const initPlaceholderData = () => {
       const now = new Date();
       const msg = response.media;
 
@@ -115,7 +113,7 @@ const selectStream = async (opts, response) => {
 
     // Apply placeholder replacements separately, otherwise filenamify
     // will remove the '~' and the '/' from the path.
-    initPlaceholderData(selectedStream);
+    initPlaceholderData();
 
     // Path (if any).
     const dirName = dirname(opts.outputTemplate);
