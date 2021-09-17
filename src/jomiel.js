@@ -22,11 +22,11 @@ import ora from "ora";
 
 import { Request } from "zeromq";
 
-const { Inquiry, Response, StatusCode } =
-  jomielMessages.jomiel.protobuf.v1beta1;
-
 import { getLogger } from "./log.js";
 import { printError } from "./printer.js";
+
+const { Inquiry, Response, StatusCode } =
+  jomielMessages.jomiel.protobuf.v1beta1;
 
 // "Update rules to support ES2022 class fields" (=> v8.0)
 // - <https://github.com/eslint/eslint/issues/14857>
