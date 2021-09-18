@@ -14,6 +14,7 @@
  * The options module of `jinqr`.
  * @module
  */
+import { createRequire } from "module";
 import { Presets } from "cli-progress";
 import { readFileSync, existsSync } from "fs";
 import { load as loadYAML } from "js-yaml";
@@ -37,16 +38,14 @@ class Options {
   /** @static {string} */
   static #GROUP_OUTPUT = "Output:";
 
-  /** @private */
-  #name;
+  /** @private {object} */
+  #package;
 
   /**
    * Create a new instance.
-   *
-   * @arg {string} name - the name of the program
    */
-  constructor(name) {
-    this.#name = name;
+  constructor() {
+    this.#readPackageJSON();
   }
 
   /**
@@ -58,30 +57,42 @@ class Options {
     const configData = this.#xdgReadConfigFiles();
     const argv = process.argv.slice(2);
 
-    return (
-      yargs(argv)
-        .scriptName(this.#name)
-        .usage("Usage: $0 [options] [URI...]")
-        .version("version", "0.1.0")
-        .alias("version", "v")
-        .help("help")
-        .alias("help", "h")
-        .options({
-          ...this.#generalGroup(),
-          ...this.#networkGroup(),
-          ...this.#outputGroup(),
-        })
-        // See <https://git.io/JGPol> for "strict"
-        .strictOptions()
-        // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
-        .config("config-file", "Load config from file", (path) =>
-          this.#readConfigFile(path)
-        )
-        .config(configData).argv
-    );
+    const opts = yargs(argv)
+      .scriptName(this.#package.name)
+      .usage("Usage: $0 [options] [URI...]")
+      .help("help")
+      .version(this.#package.version)
+      .alias("help", "h")
+      .alias("version", "v")
+      .options({
+        ...this.#generalGroup(),
+        ...this.#networkGroup(),
+        ...this.#outputGroup(),
+      })
+      // See <https://git.io/JGPol> for "strict"
+      .strictOptions()
+      // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
+      .config("config-file", "Load config from file", (path) =>
+        this.#readConfigFile(path)
+      )
+      .config(configData).argv;
+
+    return { opts, name: this.#package.name };
   }
 
   // private
+
+  /**
+   * Read the {name, version} from the package.json file.
+   *
+   * @private
+   */
+  #readPackageJSON() {
+    const require = createRequire(import.meta.url);
+    const pkgPath = require.resolve("../package.json");
+    const { name, version } = loadYAML(readFileSync(pkgPath));
+    this.#package = { name, version };
+  }
 
   /**
    * Read the configuration files from the XDG base directories.
@@ -92,7 +103,7 @@ class Options {
    */
   #xdgReadConfigFiles() {
     const result = {};
-    const configPaths = xdgConfigPaths(this.#name);
+    const configPaths = xdgConfigPaths(this.#package.name);
     // See input.js for "airbnb-style note".
     // eslint-disable-next-line no-restricted-syntax
     for (const path of configPaths) {
@@ -287,4 +298,4 @@ class Options {
 }
 
 // factory function for Options.
-export default (name) => new Options(name);
+export default () => new Options();
