@@ -69,7 +69,7 @@ class Options {
         ...this.#networkGroup(),
         ...this.#outputGroup(),
       })
-      // See <https://git.io/JGPol> for "strict"
+      // See <https://git.io/JztxQ> for ".strictOptions"
       .strictOptions()
       // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
       .config("config-file", "Load config from file", (path) =>
