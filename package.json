@@ -22,7 +22,8 @@
     "src"
   ],
   "scripts": {
-    "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json ."
+    "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json .",
+    "release": "standard-version -s --releaseCommitMessageFormat 'chore(release): jinqr version {{currentTag}} (tG)'"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
