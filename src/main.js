@@ -38,8 +38,7 @@ import {
  */
 // eslint-disable-next-line consistent-return
 (async () => {
-  const name = "jinqr";
-  const opts = Options(name).parse();
+  const { opts, name } = Options().parse();
 
   if (opts.printConfig) {
     return printConfig(opts);
