@@ -1,7 +1,7 @@
 {
   "name": "jinqr",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The simple jomiel client for downloading media streams",
   "keywords": [
     "jomiel",
