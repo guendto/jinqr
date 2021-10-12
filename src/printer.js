@@ -100,6 +100,9 @@ export const printStreams = (response) => {
     });
   }
   table.printTable();
+  console.log(
+    "Streams with '0 B' in length, will have it determined at download"
+  );
 };
 
 /**
