@@ -150,6 +150,12 @@ To negate a flag, prepend `--no-` to it.
 jinqr `--no-skip-download` URI
 ```
 
+### Logger pattern (--logger-pattern)
+
+See
+[log4js documentation](https://log4js-node.github.io/log4js-node/layouts.html#pattern)
+for the PATTERN.
+
 ### Configuration
 
 #### When you prefer JSON configuration over YAML
