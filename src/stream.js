@@ -43,8 +43,8 @@ const selectStream = async (opts, response) => {
 
   // Select the stream based on the --stream value.
   if (opts.stream) {
-    result = response.media.stream.find(
-      (x) => x.quality.profile === opts.stream
+    result = response.media.stream.find((x) =>
+      opts.stream.split("|").find((str) => str === x.quality.profile)
     );
   }
 
@@ -52,7 +52,8 @@ const selectStream = async (opts, response) => {
 
   // Make sure we have a stream.
   if (!result || result.length === 0) {
-    logger.error(`nothing matched profile "${opts.stream}"`);
+    const profiles = opts.stream.split("|");
+    logger.error(`nothing matched profile(s) "${profiles}"`);
     logger.error("re-run with --print-streams for profiles");
     process.exit(1);
   }
