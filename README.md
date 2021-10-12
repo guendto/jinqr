@@ -132,6 +132,14 @@ jinqr < URIs
 `jinqr` will try to inquire the missing values from the HTTP server with
 an HTTP HEAD request.
 
+### Using "or" ("|") with --stream
+
+Download either stream with the profile name "foo" OR "bar":
+
+```shell
+jinqr -s 'foo|bar' URI
+```
+
 ### Negatable flags
 
 To negate a flag, prepend `--no-` to it.
