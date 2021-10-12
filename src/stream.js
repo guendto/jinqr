@@ -52,7 +52,8 @@ const selectStream = async (opts, response) => {
 
   // Make sure we have a stream.
   if (!result || result.length === 0) {
-    logger.error(`nothing matched profile "${opts.stream}"`);
+    const profiles = opts.stream.split("|");
+    logger.error(`nothing matched profile(s) "${profiles}"`);
     logger.error("re-run with --print-streams for profiles");
     process.exit(1);
   }
