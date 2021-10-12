@@ -17,6 +17,9 @@
 
 # [Output]
 #
+# Whether the details of the download should be printed.
+# print-download-details: false
+#
 # The logger pattern format to use. See <https://git.io/JGuV0>.
 # logger-pattern: "%d %[(%z) %p%] - %m"
 #
