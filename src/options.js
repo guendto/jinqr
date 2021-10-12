@@ -188,6 +188,13 @@ class Options {
         desc: "Overwrite existing files",
         type: "boolean",
       },
+      "print-download-details": {
+        alias: "d",
+        group: Options.#GROUP_OUTPUT,
+        desc: "Show details of the download",
+        default: true,
+        type: "boolean",
+      },
       "progressbar-eta-buffer": {
         group: Options.#GROUP_OUTPUT,
         desc: "Number of updates used to calculate the ETA",
