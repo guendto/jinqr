@@ -68,7 +68,7 @@ class Jomiel {
     try {
       this.#connect();
       await this.#sendInquiry(uri);
-      return await this.#receiveResponse();
+      return await this.#receiveResponse(uri);
     } catch (error) {
       this.#spinner?.stop();
       error.message = `<jomiel> ${error.message}`;
@@ -122,7 +122,7 @@ class Jomiel {
    *
    * @private
    */
-  async #receiveResponse() {
+  async #receiveResponse(uri) {
     this.#spinner = ora({
       text: "<jomiel> awaiting for a response...",
       isSilent: this.#opts.verbosityLevel === "off",
@@ -135,6 +135,8 @@ class Jomiel {
 
     const msg = Response.decode(bytes);
     this.#logger.trace("receiveResponse: msg:", msg);
+
+    msg.inputUri = uri;
 
     /**
      * "Slugify" media the stream profiles for easier use with cli.
