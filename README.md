@@ -59,6 +59,8 @@ Output:
   -o, --output-template         Output filename template to use
                         [string] [default: "{title} ({identifier}).{container}"]
   -W, --overwrite-file          Overwrite existing files               [boolean]
+  -d, --print-download-details  Show details of the download
+                                                       [boolean] [default: true]
       --progressbar-eta-buffer  Number of updates used to calculate the ETA
                                                          [number] [default: 128]
       --progressbar-format      Customize progress bar layout
@@ -80,8 +82,8 @@ Output:
                                                 "mark", "off"] [default: "info"]
 
 Options:
-  -v, --version             Show version number                        [boolean]
   -h, --help                Show help                                  [boolean]
+  -v, --version             Show version number                        [boolean]
   -P, --print-config-paths  Show configuration file paths and exit     [boolean]
   -D, --print-config        Show configuration and exit                [boolean]
   -N, --print-spinners      Show available spinner names and exit      [boolean]
