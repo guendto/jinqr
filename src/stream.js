@@ -43,8 +43,8 @@ const selectStream = async (opts, response) => {
 
   // Select the stream based on the --stream value.
   if (opts.stream) {
-    result = response.media.stream.find(
-      (x) => x.quality.profile === opts.stream
+    result = response.media.stream.find((x) =>
+      opts.stream.split("|").find((str) => str === x.quality.profile)
     );
   }
 
