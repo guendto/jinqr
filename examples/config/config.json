@@ -5,6 +5,7 @@
   "http-connect-timeout": 60,
   "logger-pattern": "%d %[(%z) %p%] - %m",
   "output-template": "~/Downloads/{date.iso8610}/{title}.{container}",
+  "print-download-details": false,
   "progressbar-eta-buffer": 32,
   "progressbar-format": "| {bar} | {received}/{expected} ({eta}}",
   "progressbar-fps": 12,

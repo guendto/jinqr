@@ -21,6 +21,7 @@ import { dump as dumpYAML } from "js-yaml";
 
 import camelCase from "camelcase";
 import cliSpinners from "cli-spinners";
+import humanizeUrl from "humanize-url";
 import mimeTypes from "mime-types";
 import prettyBytes from "pretty-bytes";
 
@@ -99,6 +100,62 @@ export const printStreams = (response) => {
     });
   }
   table.printTable();
+};
+
+/**
+ * Print the details of the stream to be downloaded.
+ *
+ * @arg {object} options - the `jinqr` configuration options
+ * @arg {object} selectedStreama - the selected stream
+ * @arg {object} httpRange - the http range to download
+ *
+ * @func
+ */
+export const printDownloadDetails = (options, stream, httpRange) => {
+  const logger = getLogger();
+
+  const printBytes = () => {
+    const bytes = {
+      total: stream.contentLength.toNumber(),
+      startAt: 0,
+      endAt: stream.contentLength.toNumber(),
+    };
+
+    if (httpRange) {
+      const [begin, end] = httpRange.split("-");
+      bytes.startAt = Number(begin) || 0;
+      bytes.endAt = Number(end) || bytes.total;
+    }
+
+    bytes.pretty = {
+      startAt: prettyBytes(bytes.startAt),
+      endAt: prettyBytes(bytes.endAt),
+      total: prettyBytes(bytes.total),
+    };
+
+    const startStr = `start at: ${bytes.pretty.startAt}, `;
+    const endStr = `end at: ${bytes.pretty.endAt}, `;
+    const totalStr = `total: ${bytes.pretty.total}`;
+
+    logger.info(`  ${startStr} ${endStr} ${totalStr}`);
+  };
+
+  const actionVerb =
+    options.outputTemplate === "-" ? "streaming" : "extracting";
+
+  logger.info(`${actionVerb} the stream`);
+  logger.info(`  from: ${humanizeUrl(stream.inputUri)}`);
+
+  // Streaming from the source.
+  if (options.outputTemplate === "-") {
+    return printBytes();
+  }
+
+  // Downloading to a file.
+  const { dirPath, fileName } = stream.saveTo;
+  logger.info(`  path: ${dirPath}`);
+  logger.info(`    to: ${fileName}`);
+  return printBytes();
 };
 
 /**

@@ -146,7 +146,8 @@ const selectStream = async (opts, response) => {
     await determineFilePath(result);
   }
 
-  return result;
+  result.inputUri = response.inputUri;
+  return result; // selected stream
 };
 
 export default selectStream;

@@ -31,8 +31,9 @@ import protobuf from "protobufjs";
 import uaString from "ua-string";
 import TransferRate from "simple-eta";
 
-// eslint-disable-next-line import/extensions
+/* eslint-disable import/extensions */
 import { getLogger } from "./log.js";
+import { printDownloadDetails } from "./printer.js";
 
 /**
  * Set HTTP/S proxy agent using env. variables. See
@@ -187,6 +188,10 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
 
   if (alreadyDownloaded) {
     return logger.info("the stream has been downloaded already");
+  }
+
+  if (opts.printDownloadDetails) {
+    printDownloadDetails(opts, selectedStream, httpRange);
   }
 
   const data = {
