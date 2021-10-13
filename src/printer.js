@@ -128,6 +128,7 @@ export const printDownloadDetails = (options, stream, httpRange) => {
       const [begin, end] = httpRange.split("-");
       bytes.startAt = Number(begin) || 0;
       bytes.endAt = Number(end) || bytes.total;
+      bytes.total = bytes.endAt - bytes.startAt;
     }
 
     bytes.pretty = {
