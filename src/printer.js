@@ -131,10 +131,15 @@ export const printDownloadDetails = (options, stream, httpRange) => {
       bytes.total = bytes.endAt - bytes.startAt;
     }
 
+    const prettyBytesOpts = {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    };
+
     bytes.pretty = {
-      startAt: prettyBytes(bytes.startAt),
-      endAt: prettyBytes(bytes.endAt),
-      total: prettyBytes(bytes.total),
+      startAt: prettyBytes(bytes.startAt, prettyBytesOpts),
+      endAt: prettyBytes(bytes.endAt, prettyBytesOpts),
+      total: prettyBytes(bytes.total, prettyBytesOpts),
     };
 
     const startStr = `start at: ${bytes.pretty.startAt}, `;
