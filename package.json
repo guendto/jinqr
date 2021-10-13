@@ -30,7 +30,7 @@
     "camelcase": "^6.2.0",
     "chalk": "^4.1.2",
     "cli-progress": "^3.9.1",
-    "cli-spinners": "^2.6.0",
+    "cli-spinners": "^2.6.1",
     "console-table-printer": "^2.10.0",
     "convert-hrtime": "^5.0.0",
     "filenamify": "^5.0.1",
