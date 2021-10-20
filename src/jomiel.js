@@ -18,7 +18,7 @@ import jomielMessages from "jomiel-messages";
 import slugify from "@sindresorhus/slugify";
 import humanizeUri from "humanize-url";
 import { Request } from "zeromq";
-import chalk from "chalk";
+import pico from "picocolors";
 import ora from "ora";
 
 /* eslint-disable import/extensions */
@@ -87,9 +87,7 @@ class Jomiel {
     const re = this.#opts.routerEndpoint;
     const to = this.#opts.connectTimeout;
     this.#logger.debug(
-      `<jomiel> connect to endpoint at ${chalk.cyan(
-        re
-      )} (timeout=${to})`
+      `<jomiel> connect to endpoint at ${pico.cyan(re)} (timeout=${to})`
     );
     this.#sck = new Request({ receiveTimeout: to * 1000, linger: 0 });
     this.#sck.connect(re);
@@ -104,7 +102,7 @@ class Jomiel {
    */
   async #sendInquiry(uri) {
     const humanUri = humanizeUri(uri);
-    this.#logger.debug(`<jomiel> inquire ${chalk.cyan(humanUri)}`);
+    this.#logger.debug(`<jomiel> inquire ${pico.cyan(humanUri)}`);
 
     const msg = Inquiry.create({ media: { inputUri: uri } });
     this.#logger.trace("sendInquiry: msg:", msg);
