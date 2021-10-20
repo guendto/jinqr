@@ -21,7 +21,7 @@ import { stat } from "fs/promises";
 import { pipeline } from "stream";
 import { promisify } from "util";
 
-import chalk from "chalk";
+import pico from "picocolors";
 import convertHrtime from "convert-hrtime";
 import got from "got";
 import ora from "ora";
@@ -273,7 +273,7 @@ export const httpDownloadStream = async ({ opts, selectedStream }) => {
     .on("uploadProgress", ({ percent }) => {
       // eslint-disable-next-line no-param-reassign
       percent = Math.round(percent * 100);
-      data.spinner.text = `${chalk.cyan("upload")}: ${percent}%`;
+      data.spinner.text = `${pico.cyan("upload")}: ${percent}%`;
     })
     // When we send the request.
     .on("request", (request) => {
