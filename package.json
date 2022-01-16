@@ -32,7 +32,7 @@
     "cli-spinners": "^2.6.1",
     "console-table-printer": "^2.10.0",
     "convert-hrtime": "^5.0.0",
-    "filenamify": "^5.0.1",
+    "filenamify": "^5.1.0",
     "global-agent": "^3.0.0",
     "got": "^11.8.2",
     "humanize-url": "^3.0.0",
