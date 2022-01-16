@@ -28,7 +28,7 @@
   "dependencies": {
     "@sindresorhus/slugify": "^2.1.0",
     "camelcase": "^6.3.0",
-    "cli-progress": "^3.9.1",
+    "cli-progress": "^3.10.0",
     "cli-spinners": "^2.6.1",
     "console-table-printer": "^2.10.0",
     "convert-hrtime": "^5.0.0",
