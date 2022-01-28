@@ -102,7 +102,7 @@ jinqr URI
 Stream the media being downloaded to stdout.
 
 ```shell
-jinqr -o - URI | mplayer -
+jinqr -o - URI | mpv -
 ```
 
 ## Tips and notes
