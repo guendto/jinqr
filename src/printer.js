@@ -21,6 +21,7 @@ import { dump as dumpYAML } from "js-yaml";
 
 import camelCase from "camelcase";
 import cliSpinners from "cli-spinners";
+import cliTruncate from "cli-truncate";
 import humanizeUrl from "humanize-url";
 import mimeTypes from "mime-types";
 import prettyBytes from "pretty-bytes";
@@ -175,18 +176,21 @@ export const printDownloadDetails = (options, stream, httpRange) => {
  * @func
  */
 export const printDownload = (selectedStream) => {
-  const table = new Table({
-    columns: [
-      { name: "destination", maxLen: 60 },
-      { name: "length", minLen: 16 },
-    ],
+  const { saveTo, contentLength } = selectedStream;
+
+  let dest = saveTo?.fullPath ?? "(stream to stdout)";
+
+  dest = cliTruncate(dest, 60, {
+    preferTruncationOnSpace: true,
+    position: "middle",
   });
-  table.addRow({
-    destination:
-      selectedStream.saveTo?.fullPath ?? "(stream to stdout)",
-    length: prettyBytes(selectedStream.contentLength.toNumber()),
-  });
-  table.printTable();
+
+  const len = prettyBytes(contentLength.toNumber());
+  const logger = getLogger();
+
+  logger.info(`${pico.blue("skip")} download, show details only`);
+  logger.info(`  ${pico.dim("destination")}: ${pico.cyan(dest)}`);
+  logger.info(`  ${pico.dim("length")}: ${len}`);
 };
 
 /**
