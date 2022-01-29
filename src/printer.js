@@ -4,7 +4,7 @@
  * jinqr
  *
  * Copyright
- *  2021 Toni Gündoğdu
+ *  2021-2022 Toni Gündoğdu
  *
  *
  * SPDX-License-Identifier: Apache-2.0
