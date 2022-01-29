@@ -50,16 +50,31 @@ export const printConfigPaths = (name) => {
  * @func
  */
 export const printConfig = (options) => {
-  let result = {};
+  const filtered = {};
+
   Object.entries(options).forEach(([key, value]) => {
     if (key === "_" || key.length > 2) {
       // eslint-disable-next-line no-param-reassign
       key = key === "_" ? "uri" : camelCase(key);
-      result[key] = value;
+      filtered[key] = value;
     }
   });
-  result = dumpYAML(result);
-  process.stdout.write(`---\n${result}`);
+
+  const table = new Table({
+    columns: [
+      { name: "Name", alignment: "left", color: "blue" },
+      { name: "Value", alignment: "left", color: "cyan" },
+    ],
+  });
+
+  Object.entries(filtered).forEach(([key, value]) => {
+    table.addRow({
+      Name: key,
+      Value: value,
+    });
+  });
+
+  table.printTable();
 };
 
 /**
