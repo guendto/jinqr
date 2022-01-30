@@ -17,7 +17,6 @@
  * @module
  */
 import { Table } from "console-table-printer";
-import { dump as dumpYAML } from "js-yaml";
 
 import camelCase from "camelcase";
 import cliSpinners from "cli-spinners";
