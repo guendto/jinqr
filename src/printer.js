@@ -175,7 +175,7 @@ export const printDownloadDetails = (options, stream, httpRange) => {
  *
  * @func
  */
-export const printDownload = (selectedStream) => {
+export const skipDownloadPrintOnly = (selectedStream) => {
   const { saveTo, contentLength } = selectedStream;
 
   let dest = saveTo?.fullPath ?? "(stream to stdout)";
