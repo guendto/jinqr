@@ -37,9 +37,11 @@ import { xdgConfigPaths } from "./xdg.js";
  * @func
  */
 export const printConfigPaths = (name) => {
-  const paths = xdgConfigPaths(name);
-  const result = dumpYAML(paths);
-  process.stdout.write(`---\n${result}`);
+  const table = new Table({ title: "Configuration file paths" });
+  xdgConfigPaths(name).forEach((path) =>
+    table.addRow({ path }, { color: "blue" })
+  );
+  table.printTable();
 };
 
 /**
