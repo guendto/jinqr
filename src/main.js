@@ -27,7 +27,7 @@ import { initLogger, getLogger } from "./log.js";
 import {
   printConfigPaths,
   printConfig,
-  printDownload,
+  skipDownloadPrintOnly,
   printError,
   printSpinners,
   printStreams,
@@ -83,7 +83,7 @@ import {
       const stream = await selectStream(opts, response);
       logger.trace("selected", stream);
       if (opts.skipDownload) {
-        printDownload(stream);
+        skipDownloadPrintOnly(stream);
       } else {
         try {
           await httpDownloadStream({ opts, selectedStream: stream });
