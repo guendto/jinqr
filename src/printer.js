@@ -24,6 +24,7 @@ import cliSpinners from "cli-spinners";
 import humanizeUrl from "humanize-url";
 import mimeTypes from "mime-types";
 import prettyBytes from "pretty-bytes";
+import pico from "picocolors";
 
 /* eslint-disable import/extensions */
 import { getLogger } from "./log.js";
@@ -115,13 +116,14 @@ export const printStreams = (response) => {
  * @func
  */
 export const printDownloadDetails = (options, stream, httpRange) => {
+  const { contentLength, inputUri, saveTo } = stream;
   const logger = getLogger();
 
   const printBytes = () => {
     const bytes = {
-      total: stream.contentLength.toNumber(),
+      total: contentLength.toNumber(),
       startAt: 0,
-      endAt: stream.contentLength.toNumber(),
+      endAt: contentLength.toNumber(),
     };
 
     if (httpRange) {
@@ -142,28 +144,37 @@ export const printDownloadDetails = (options, stream, httpRange) => {
       total: prettyBytes(bytes.total, prettyBytesOpts),
     };
 
-    const startStr = `start at: ${bytes.pretty.startAt}, `;
-    const endStr = `end at: ${bytes.pretty.endAt}, `;
-    const totalStr = `total: ${bytes.pretty.total}`;
+    const startStr = `${pico.dim("start at")}: ${
+      bytes.pretty.startAt
+    }, `;
+
+    const endStr = `${pico.dim("end at")}: ${bytes.pretty.endAt}, `;
+    const totalStr = `${pico.dim("total")}: ${bytes.pretty.total}`;
 
     logger.info(`  ${startStr} ${endStr} ${totalStr}`);
   };
 
-  const actionVerb =
-    options.outputTemplate === "-" ? "streaming" : "extracting";
+  const { outputTemplate } = options;
 
-  logger.info(`${actionVerb} the stream`);
-  logger.info(`  from: ${humanizeUrl(stream.inputUri)}`);
+  const action =
+    outputTemplate === "-"
+      ? "streaming to stdout" // colors won't be available while streaming
+      : `${pico.blue("copying")} the stream`;
+
+  logger.info(action);
+  logger.info(`  ${pico.dim("from")}: ${humanizeUrl(inputUri)}`);
 
   // Streaming from the source.
-  if (options.outputTemplate === "-") {
+  if (outputTemplate === "-") {
     return printBytes();
   }
 
   // Downloading to a file.
-  const { dirPath, fileName } = stream.saveTo;
-  logger.info(`  path: ${dirPath}`);
-  logger.info(`    to: ${fileName}`);
+  const { dirPath, fileName } = saveTo;
+
+  logger.info(`  ${pico.dim("path")}: ${dirPath}`);
+  logger.info(`    ${pico.dim("to")}: ${pico.cyan(fileName)}`);
+
   return printBytes();
 };
 
