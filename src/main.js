@@ -78,7 +78,7 @@ import {
     logger.trace(response);
 
     if (opts.printStreams) {
-      printStreams(response);
+      printStreams(uri, response);
     } else {
       const stream = await selectStream(opts, response);
       logger.trace("selected", stream);

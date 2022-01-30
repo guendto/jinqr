@@ -100,26 +100,40 @@ export const printSpinners = () => {
  * Print the available streams for the inquiried URI.
  *
  * @arg {object} response - the response returned by `jomiel`
+ * @arg {string} inputUri - the input URI
  *
  * @func
  */
-export const printStreams = (response) => {
-  const table = new Table();
-  // See input.js for "airbnb-style note".
-  // eslint-disable-next-line no-restricted-syntax
-  for (const stream of response.media.stream) {
+export const printStreams = (inputUri, response) => {
+  const color = "cyan";
+
+  const table = new Table({
+    title: inputUri,
+    columns: [
+      { name: "Profile", color: "blue" },
+      { name: "Container", color },
+      { name: "Codecs", color },
+      { name: "Bitrate", color },
+      { name: "Length", color },
+    ],
+  });
+
+  response.media.stream.forEach((stream) => {
+    const { contentLength, quality, mimeType } = stream;
+    const { profile: Profile, bitrate } = quality;
+
+    const length = prettyBytes(contentLength.toNumber());
+
     table.addRow({
-      profile: stream.quality.profile,
-      container: mimeTypes.extension(stream.mimeType),
-      codecs: (stream.mimeType.match(/"(.*)"/) || ["?", "?"])[1],
-      bitrate: prettyBytes(stream.quality.bitrate, { bits: true }),
-      length: prettyBytes(stream.contentLength.toNumber()),
+      Profile,
+      Container: mimeTypes.extension(mimeType),
+      Codecs: (mimeType.match(/"(.*)"/) || ["?", "?"])[1],
+      Bitrate: prettyBytes(bitrate, { bits: true }),
+      Length: length === "0 B" ? "(detect)" : length,
     });
-  }
+  });
+
   table.printTable();
-  console.log(
-    "Streams with '0 B' in length, will have it determined at download"
-  );
 };
 
 /**
