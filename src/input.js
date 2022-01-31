@@ -106,14 +106,6 @@ const processInput = async ({
   // eslint-disable-next-line no-param-reassign
   rebuildURI = returnAsObjects ? false : rebuildURI || false;
 
-  // Note:
-  // "The airbnb style guide recommends not using for...of for _web apps_
-  // because it requires a large polyfill. (...)"
-  // -- <https://gist.github.com/prowlee/e8833a8a02687d614d40c09bc5bdb807>
-  //
-  // Blacklisting "ForOfStatement" seems impossible(?), disable
-  // the no-restricted-syntax per line, for now.
-
   if (nargs && nargs.length > 0) {
     // eslint-disable-next-line no-restricted-syntax
     for (const narg of nargs) {
