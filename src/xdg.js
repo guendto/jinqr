@@ -87,26 +87,20 @@ export const xdgConfigPaths = (
 ) => {
   const result = [];
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const dir of xdgConfigDirs()) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const configFile of configFiles) {
+  xdgConfigDirs().forEach((dir) => {
+    configFiles.forEach((configFile) => {
       result.push(join(dir, name, configFile));
-    }
-  }
+    });
+  });
 
   const configHome = xdgConfigHome();
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const configFile of configFiles) {
-    result.push(join(configHome, name, configFile));
-  }
+  configFiles.forEach((configFile) =>
+    result.push(join(configHome, name, configFile))
+  );
 
   if (includeCWD) {
-    // eslint-disable-next-line no-restricted-syntax
-    for (const configFile of configFiles) {
-      result.push(`./${configFile}`);
-    }
+    configFiles.forEach((configFile) => result.push(configFile));
   }
 
   return result;
