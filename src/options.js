@@ -104,7 +104,6 @@ class Options {
   #xdgReadConfigFiles() {
     const result = {};
     const configPaths = xdgConfigPaths(this.#package.name);
-    // See input.js for "airbnb-style note".
     // eslint-disable-next-line no-restricted-syntax
     for (const path of configPaths) {
       if (existsSync(path)) {
