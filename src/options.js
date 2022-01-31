@@ -103,13 +103,11 @@ class Options {
    */
   #xdgReadConfigFiles() {
     const result = {};
-    const configPaths = xdgConfigPaths(this.#package.name);
-    // eslint-disable-next-line no-restricted-syntax
-    for (const path of configPaths) {
+    xdgConfigPaths(this.#package.name).forEach((path) => {
       if (existsSync(path)) {
         Object.assign(result, Options.readConfigFile(path));
       }
-    }
+    });
     return result;
   }
 
