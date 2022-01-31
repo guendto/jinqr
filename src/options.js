@@ -73,7 +73,7 @@ class Options {
       .strictOptions()
       // See <https://git.io/JGPou> for ".config([key], [desc], [fn])"
       .config("config-file", "Load config from file", (path) =>
-        this.#readConfigFile(path)
+        Options.readConfigFile(path)
       )
       .config(configData).argv;
 
@@ -108,22 +108,11 @@ class Options {
     // eslint-disable-next-line no-restricted-syntax
     for (const path of configPaths) {
       if (existsSync(path)) {
-        Object.assign(result, this.#readConfigFile(path));
+        Object.assign(result, Options.readConfigFile(path));
       }
     }
     return result;
   }
-
-  /**
-   * Try to read the configuration file.
-   *
-   * @arg {string} path to the file
-   *
-   * @returns {object} the configuration data
-   *
-   * @private
-   */
-  #readConfigFile = (path) => loadYAML(readFileSync(path)) || {};
 
   /**
    * Return the general group of options.
@@ -302,6 +291,17 @@ class Options {
       },
     };
   }
+
+  /**
+   * Try to read the configuration file.
+   *
+   * @arg {string} path to the file
+   *
+   * @returns {object} the configuration data
+   *
+   * @static
+   */
+  static readConfigFile = (path) => loadYAML(readFileSync(path)) || {};
 }
 
 // factory function for Options.
