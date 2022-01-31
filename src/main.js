@@ -11,6 +11,14 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// Note:
+// "The airbnb style guide recommends not using for...of for **web apps**
+// because it requires a large polyfill."
+// -- <https://gist.github.com/joeytwiddle/37d2085425c049629b80956d3c618971>
+//
+// Blacklisting "ForOfStatement" seems impossible(?), disable the
+// no-restricted-syntax per line, for now.
+
 /**
  * The main module of `jinqr`.
  * @module
@@ -71,7 +79,6 @@ import {
   httpSetupGlobalProxy();
   const jomiel = Jomiel(opts);
 
-  // See input.js for "airbnb-style note".
   // eslint-disable-next-line no-restricted-syntax
   for await (const uri of inputURIs) {
     const response = await jomiel.inquire(uri);
