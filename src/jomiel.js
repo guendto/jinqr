@@ -147,7 +147,6 @@ class Jomiel {
      */
     const slugifyProfiles = (response) => {
       const result = [];
-      // See input.js for "airbnb-style note".
       // eslint-disable-next-line no-restricted-syntax
       for (const stream of response.media.stream) {
         stream.quality.profile = slugify(stream.quality.profile);
