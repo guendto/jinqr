@@ -87,8 +87,6 @@ export const xdgConfigPaths = (
 ) => {
   const result = [];
 
-  // See input.js for "for...of airbnb-style note".
-
   // eslint-disable-next-line no-restricted-syntax
   for (const dir of xdgConfigDirs()) {
     // eslint-disable-next-line no-restricted-syntax
