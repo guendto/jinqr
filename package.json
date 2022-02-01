@@ -15,13 +15,16 @@
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "main": "src/main.js",
-  "bin": {
-    "jinqr": "src/main.js"
-  },
+  "bin": "src/main.js",
+  "man": [
+    "man/jinqr.1.gz"
+  ],
   "files": [
-    "src"
+    "src",
+    "man"
   ],
   "scripts": {
+    "prepack": "mkdir -p man && remark docs/jinqr.1.md -u remark-man -o man/jinqr.1 && gzip -f man/jinqr.1",
     "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json .",
     "release": "standard-version -s --releaseCommitMessageFormat 'chore(release): jinqr version {{currentTag}} (tG)'"
   },
@@ -63,6 +66,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "jsdoc": "^3.6.10",
     "prettier": "^2.5.1",
+    "remark-cli": "^10.0.1",
+    "remark-man": "^8.0.1",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.2"
   }
