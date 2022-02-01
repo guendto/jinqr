@@ -64,6 +64,7 @@
     "jsdoc": "^3.6.10",
     "prettier": "^2.5.1",
     "remark-cli": "^10.0.1",
+    "remark-man": "^8.0.1",
     "rimraf": "^3.0.2",
     "standard-version": "^9.3.2"
   }
