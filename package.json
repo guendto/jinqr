@@ -22,7 +22,8 @@
     "man/jinqr.1.gz"
   ],
   "files": [
-    "src"
+    "src",
+    "man"
   ],
   "scripts": {
     "prepack": "mkdir -p man && remark docs/jinqr.1.md -u remark-man -o man/jinqr.1 && gzip -f man/jinqr.1",
