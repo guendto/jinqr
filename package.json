@@ -18,6 +18,9 @@
   "bin": {
     "jinqr": "src/main.js"
   },
+  "man": [
+    "man/jinqr.1.gz"
+  ],
   "files": [
     "src"
   ],
