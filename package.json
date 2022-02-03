@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "prepack": "mkdir -p man && remark docs/jinqr.1.md -u remark-man -o man/jinqr.1 && gzip -f man/jinqr.1",
-    "build-docs": "rimraf doc/ && jsdoc --pedantic -c ./jsdoc.json .",
+    "build-docs": "rimraf docs/jsdoc/ && jsdoc --pedantic -c ./jsdoc.json .",
     "release": "standard-version -s --releaseCommitMessageFormat 'chore(release): jinqr version {{currentTag}} (tG)'"
   },
   "dependencies": {
