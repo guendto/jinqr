@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/guendto/jinqr/compare/v0.1.2...v0.1.4) (2022-02-03)
+
+
+### Features
+
+* **--print-config-paths:** use table for output ([7a278df](https://github.com/guendto/jinqr/commit/7a278df6fc8d837c0d97990a5cddf532769b435f))
+* **--print-config:** use table for output ([c264fe2](https://github.com/guendto/jinqr/commit/c264fe20c1771677cfd6065c640effc1253df452))
+* **--print-stream:** add title, colors, display "(detect)" ([7f36310](https://github.com/guendto/jinqr/commit/7f363107033bf1d820f0792bb8ffb16cc344aaf1))
+* **--skip-download:** use logger for output, trunc filenames (>60) ([24f69fb](https://github.com/guendto/jinqr/commit/24f69fb4bcc0fb250d5bf4390c3c8882c49bc635))
+* add colors to printed download details ([b245f35](https://github.com/guendto/jinqr/commit/b245f355be0396a6fbc6c2a8876bcb6e83c3bbc7))
+* bundle with jinqr(1) manpage ([63ace2b](https://github.com/guendto/jinqr/commit/63ace2b1418143d40035b1355b03b068066ea1d6))
+
 ### [0.1.2](https://github.com/guendto/jinqr/compare/v0.1.1...v0.1.2) (2021-10-14)
 
 
